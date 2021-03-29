@@ -39,15 +39,33 @@ lucky :: (Integral a) => a -> String
 lucky 7 = "LUCKY NUMBER SEVEN!"
 lucky x = "Sorry, you're out of luck, pal!"
 
+-- main = print' $ lucky 6
+
 say_my_name :: String -> String
 say_my_name "Josh" = "Your name is NOT Josh"
 say_my_name my_name = "alright your name is " ++ my_name
 
--- main = print' $ lucky 6
 -- main = print' $ say_my_name "Peter"
 
 addVectors :: (Num v) => (v, v) -> (v, v) -> (v, v)
 addVectors (x1, y1) (x2, y2) = (x1+x2, y1+y2)
 -- addVectors a b = (fst a + fst b, snd a + snd b)
 
-main = print' $ addVectors (10, 11) (5, 6)
+-- main = print' $ addVectors (10, 11) (5, 6)
+
+--
+-- tell :: (Show a) => [a] -> String
+-- tell [] = "Empty"
+-- tell (x:[]) = "One element" ++ show x
+-- tell (x:_) = "many"
+
+tell :: (Show a) => [a] -> String
+tell [] = "The list is empty"
+tell (x:[]) = "The list has one element: " ++ show x
+tell (x:y:[]) = "The list has two elements: " ++ show x ++ " and " ++ show y
+tell (x:y:_) = "This list is long. The first two elements are: " ++ show x ++ " and " ++ show y
+
+-- main = print' $ tell ([] :: [Int])
+main = print' $ tell [123, 222, 33, 4444]
+
+-- main = putStrLn $ "ASDASD"
