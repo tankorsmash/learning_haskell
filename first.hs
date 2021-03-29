@@ -89,4 +89,14 @@ bmiTell bmi
     | bmi <= 30.0 = "fat"
     | otherwise = "whale"
 
-main = print' $ bmiTell 29
+-- main = print' $ bmiTell 29
+
+myCompare :: (Ord a) => a -> a -> Ordering
+-- a `myCompare` b
+myCompare a b
+    | a > b = GT
+    | a ==b = EQ
+    | a < b = LT
+
+main = print' $ myCompare 3 2
+-- main = print' $ 3 `myCompare` 2
