@@ -19,6 +19,14 @@ print' x = putStrLn $ show x
 
 -- comp = [x*2 | x <- [1..10]]
 -- complex_comp =[if x < 5 then x else 0 | x <- [1..10], or [odd x, even x]]
-multi_input_comp = [ x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]
+-- multi_input_comp = [ x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]
 
-main = print' multi_input_comp
+is_uppercase c = elem c ['A'..'Z']
+is_lowercase c = elem c ['a'..'z']
+
+only_upper xs = [x | x <- xs, is_uppercase x]
+only_lower xs = [x | x <- xs, is_lowercase x]
+
+name = "Jackie"
+
+main = print' $ only_upper name ++ " then only the lowercase letters: " ++ only_lower name
