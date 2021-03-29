@@ -98,5 +98,14 @@ myCompare a b
     | a ==b = EQ
     | a < b = LT
 
-main = print' $ myCompare 3 2
+-- main = print' $ myCompare 3 2
 -- main = print' $ 3 `myCompare` 2
+
+-- calc :: (Int a) => a -> a -> a --idk why this doesn't work
+calc :: Int ->Int ->Int
+calc x y
+    | xy < 10 = 0
+    | otherwise = xy
+    where xy = x + y
+
+main = print' $ calc 10 25
