@@ -39,4 +39,9 @@ lucky :: (Integral a) => a -> String
 lucky 7 = "LUCKY NUMBER SEVEN!"
 lucky x = "Sorry, you're out of luck, pal!"
 
-main = print' $ lucky 6
+say_my_name :: String -> String
+say_my_name "Josh" = "Your name is NOT Josh"
+say_my_name my_name = "alright your name is " ++ my_name
+
+-- main = print' $ lucky 6
+main = print' $ say_my_name "Peter"
