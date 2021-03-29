@@ -44,4 +44,10 @@ say_my_name "Josh" = "Your name is NOT Josh"
 say_my_name my_name = "alright your name is " ++ my_name
 
 -- main = print' $ lucky 6
-main = print' $ say_my_name "Peter"
+-- main = print' $ say_my_name "Peter"
+
+addVectors :: (Num v) => (v, v) -> (v, v) -> (v, v)
+addVectors (x1, y1) (x2, y2) = (x1+x2, y1+y2)
+-- addVectors a b = (fst a + fst b, snd a + snd b)
+
+main = print' $ addVectors (10, 11) (5, 6)
