@@ -80,4 +80,13 @@ capital :: String -> String
 capital "" = "No letter to capitalize"
 capital all@(x:xs) = "The first letter of "++all++" is " ++ [x] -- [x] has to be wrapped because otherwise you can't add a Char to a String
 
-main = print' $ capital "Josh"
+-- main = print' $ capital "Josh"
+
+bmiTell :: (RealFloat a) => a -> String
+bmiTell bmi
+    | bmi <= 18.5 = "underweight"
+    | bmi <= 25.0 = "normal"
+    | bmi <= 30.0 = "fat"
+    | otherwise = "whale"
+
+main = print' $ bmiTell 29
