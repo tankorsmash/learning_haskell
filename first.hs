@@ -29,4 +29,8 @@ only_lower xs = [x | x <- xs, is_lowercase x]
 
 name = "Jackie"
 
-main = print' $ only_upper name ++ " then only the lowercase letters: " ++ only_lower name
+-- main = print' $ only_upper name ++ " then only the lowercase letters: " ++ only_lower name
+
+my_pair = (1, name)
+
+main = print' $ my_pair
