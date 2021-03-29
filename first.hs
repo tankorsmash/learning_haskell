@@ -18,6 +18,7 @@ mprint x = putStrLn $ show x
 -- main = putStrLn $ show [2, 4..20] --make sure you give it a valid first set of two numbers, otherwise it goes forever with `[2, 1..2]`.
 
 -- comp = [x*2 | x <- [1..10]]
-complex_comp =[if x < 5 then x else 0 | x <- [1..10], or [odd x, even x]]
+-- complex_comp =[if x < 5 then x else 0 | x <- [1..10], or [odd x, even x]]
+multi_input_comp = [ x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]
 
-main = mprint complex_comp
+main = mprint multi_input_comp
