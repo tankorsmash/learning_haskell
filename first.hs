@@ -33,4 +33,10 @@ name = "Jackie"
 
 my_pair = (1, name)
 
-main = print' $ my_pair
+-- main = print' $ my_pair
+
+lucky :: (Integral a) => a -> String
+lucky 7 = "LUCKY NUMBER SEVEN!"
+lucky x = "Sorry, you're out of luck, pal!"
+
+main = print' $ lucky 6
