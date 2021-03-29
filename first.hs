@@ -13,4 +13,7 @@ get_first_letter str = str !! 0
 -- main = putStrLn $ show $ length "Josh"
 -- main = putStrLn $ show $ null [1, 2, 3]
 -- main = putStrLn $ show $ reverse "Josh"
-main = putStrLn $ show [2, 4..20] --make sure you give it a valid first set of two numbers, otherwise it goes forever with `[2, 1..2]`.
+-- main = putStrLn $ show [2, 4..20] --make sure you give it a valid first set of two numbers, otherwise it goes forever with `[2, 1..2]`.
+
+mprint x = putStrLn $ show x
+main = mprint "ASDASD"
