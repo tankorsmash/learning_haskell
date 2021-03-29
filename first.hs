@@ -8,7 +8,7 @@ add_list = [1] ++ [2]
 
 get_first_letter str = str !! 0
 
-mprint x = putStrLn $ show x
+print' x = putStrLn $ show x
 
 -- main = putStrLn $ show $ doubleSmallNumber 50
 -- main = putStrLn $ show $ get_first_letter "Josh"
@@ -21,4 +21,4 @@ mprint x = putStrLn $ show x
 -- complex_comp =[if x < 5 then x else 0 | x <- [1..10], or [odd x, even x]]
 multi_input_comp = [ x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]
 
-main = mprint multi_input_comp
+main = print' multi_input_comp
