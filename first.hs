@@ -108,4 +108,14 @@ calc x y
     | otherwise = xy
     where xy = x + y
 
-main = print' $ calc 10 25
+-- main = print' $ calc 10 25
+
+-- round to two digits TODO: figure out how to dynically round returned value
+round2 :: (RealFloat a) => a -> a
+round2 x = fromIntegral (round x*100) / 100.0
+
+calcBMIs :: (RealFloat a) => [(a, a)] -> [a]
+calcBMIs xs = [bmi w h | (w, h) <- xs]
+    where bmi weight height = round2 $ (weight / height ^ 2)
+
+main = print' $ calcBMIs [(76, 1.23), (67, 1.11), (89, 1.22)]
