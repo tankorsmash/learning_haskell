@@ -8,6 +8,8 @@ add_list = [1] ++ [2]
 
 get_first_letter str = str !! 0
 
+mprint x = putStrLn $ show x
+
 -- main = putStrLn $ show $ doubleSmallNumber 50
 -- main = putStrLn $ show $ get_first_letter "Josh"
 -- main = putStrLn $ show $ length "Josh"
@@ -15,7 +17,7 @@ get_first_letter str = str !! 0
 -- main = putStrLn $ show $ reverse "Josh"
 -- main = putStrLn $ show [2, 4..20] --make sure you give it a valid first set of two numbers, otherwise it goes forever with `[2, 1..2]`.
 
-comp = [x*2 | x <- [1..10]]
+-- comp = [x*2 | x <- [1..10]]
+complex_comp =[if x < 5 then x else 0 | x <- [1..10], or [odd x, even x]]
 
-mprint x = putStrLn $ show x
-main = mprint comp
+main = mprint complex_comp
