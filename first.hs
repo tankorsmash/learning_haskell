@@ -66,6 +66,18 @@ tell (x:y:[]) = "The list has two elements: " ++ show x ++ " and " ++ show y
 tell (x:y:_) = "This list is long. The first two elements are: " ++ show x ++ " and " ++ show y
 
 -- main = print' $ tell ([] :: [Int])
-main = print' $ tell [123, 222, 33, 4444]
+-- main = print' $ tell [123, 222, 33, 4444]
 
 -- main = putStrLn $ "ASDASD"
+
+length' :: (Num b) => [a] -> b
+length' [] = 0
+length' (_:xs) = 1 + length' xs
+
+-- main = print' $ length' [1,2,3, 4, 5]
+
+capital :: String -> String
+capital "" = "No letter to capitalize"
+capital all@(x:xs) = "The first letter of "++all++" is " ++ [x] -- [x] has to be wrapped because otherwise you can't add a Char to a String
+
+main = print' $ capital "Josh"
