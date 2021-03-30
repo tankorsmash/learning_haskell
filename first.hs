@@ -118,4 +118,14 @@ calcBMIs :: (RealFloat a) => [(a, a)] -> [a]
 calcBMIs xs = [bmi w h | (w, h) <- xs]
     where bmi weight height = round2 $ (weight / height ^ 2)
 
-main = print' $ calcBMIs [(76, 1.23), (67, 1.11), (89, 1.22)]
+-- main = print' $ calcBMIs [(76, 1.23), (67, 1.11), (89, 1.22)]
+
+flip' :: (a -> b -> c) -> (b -> a -> c)
+flip' f = g
+    where g y x = f x y
+
+
+sub' :: (Num a) => a -> a -> a
+sub' x y = x - y
+
+main = print' $ (flip' sub') 10 1
