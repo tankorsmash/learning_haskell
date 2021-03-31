@@ -128,4 +128,20 @@ flip' f = g
 sub' :: (Num a) => a -> a -> a
 sub' x y = x - y
 
-main = print' $ (flip' sub') 10 1
+-- main = print' $ (flip' sub') 10 1
+
+largestDivisible :: (Integral a) => a
+largestDivisible = head (filter p [100000,99999..])
+    where p x = x `mod` 3829 == 0
+
+
+findKey :: (Eq k) => k -> [(k,v)] -> v
+findKey key xs = snd . head . filter (\(k,v) -> key == k) $ xs
+
+
+book = [
+    ("Josh", 123),
+    ("Matt", 322),
+    ("Olivia", 420)]
+
+main = print' book
