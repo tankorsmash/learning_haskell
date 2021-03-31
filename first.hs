@@ -141,11 +141,14 @@ largestDivisible = head (filter p [100000,99999..])
 -- findKey :: (Eq k) => k -> [(k,v)] -> v
 -- findKey key xs = snd . head . filter (\(k,v) -> key == k) $ xs
 
+lowerWord = map toLower
+
 findKey :: String -> [(String, v)] -> Maybe v
-findKey key [] = Nothing
-findKey key ((k,v):xs) = if (map toLower key) == map toLower k
-                        then Just v
-                        else findKey key xs
+-- findKey key [] = Nothing
+-- findKey key ((k,v):xs) = if (map toLower key) == map toLower k
+--                         then Just v
+--                         else findKey key xs
+findKey key = foldr (\(k,v) acc -> if lowerWord key == lowerWord k then Just v else acc) Nothing
 
 
 book = [
