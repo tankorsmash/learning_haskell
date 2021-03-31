@@ -1,3 +1,6 @@
+import Data.Char
+import Data.String as T
+
 doubleMe x = x + x
 my_int = doubleMe 2
 doubleSmallNumber x = if x > 100 then x else x * 2
@@ -135,8 +138,14 @@ largestDivisible = head (filter p [100000,99999..])
     where p x = x `mod` 3829 == 0
 
 
-findKey :: (Eq k) => k -> [(k,v)] -> v
-findKey key xs = snd . head . filter (\(k,v) -> key == k) $ xs
+-- findKey :: (Eq k) => k -> [(k,v)] -> v
+-- findKey key xs = snd . head . filter (\(k,v) -> key == k) $ xs
+
+findKey :: String -> [(String, v)] -> Maybe v
+findKey key [] = Nothing
+findKey key ((k,v):xs) = if (map toLower key) == map toLower k
+                        then Just v
+                        else findKey key xs
 
 
 book = [
