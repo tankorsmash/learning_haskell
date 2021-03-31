@@ -1,5 +1,6 @@
 import Data.Char
 import Data.String as T
+import qualified Data.Map as Map
 
 doubleMe x = x + x
 my_int = doubleMe 2
@@ -149,6 +150,13 @@ findKey :: String -> [(String, v)] -> Maybe v
 --                         then Just v
 --                         else findKey key xs
 findKey key = foldr (\(k,v) acc -> if lowerWord key == lowerWord k then Just v else acc) Nothing
+
+
+fromList_si :: [(String, Int)] -> Map.Map String Int
+fromList_si = foldr (\(k,v) acc -> Map.insert k v acc) (Map.fromList [("Nate", 555)])
+
+fromList_sf :: [(String, Float)] -> Map.Map String Float
+fromList_sf = foldr (\(k,v) acc -> Map.insert k v acc) (Map.fromList [("Nate", 555.0)])
 
 
 book = [
