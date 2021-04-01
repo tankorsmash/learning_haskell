@@ -164,4 +164,19 @@ book = [
     ("Matt", 322),
     ("Olivia", 420)]
 
-main = print' book
+-- main = print' book
+
+
+data Circle = Circle Int Int Int
+
+print_circle :: Circle -> String
+print_circle (circle) = "ASDADS"
+-- print_circle (Circle, ox, oy, r) = "ASDADS"
+
+-- instance Show Circle where
+--     show (Circle ox oy r) = show ox
+-- show :: Circle -> String
+-- show (Circle ox oy r) = "The origin's xy are: "
+
+my_circle = Circle 123 123 30
+main = print' $ print_circle my_circle
