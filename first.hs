@@ -1,3 +1,5 @@
+-- This is all from http://learnyouahaskell.com/chapters, with the _tiniest_ of changes from me
+
 import Data.Char
 import Data.String as T
 import qualified Data.Map as Map
