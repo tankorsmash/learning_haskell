@@ -227,3 +227,18 @@ treeElem x (Node a left right)
     | x == a = True
       | x < a  = treeElem x left
         | x > a  = treeElem x right
+
+
+-- main = do
+--     print' "hello whats your name?"
+--     print' $ "Hey " ++ name ++ ", you rock!"
+
+main = do
+    c <- getChar
+    if c /= ' '
+        then do
+            putChar c
+            main
+        else do
+            print' $ ": end of the world " ++ [c]
+            return ()
