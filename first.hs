@@ -4,6 +4,8 @@ import Data.Char
 import Data.String as T
 import qualified Data.Map as Map
 
+import System.IO
+
 doubleMe x = x + x
 my_int = doubleMe 2
 doubleSmallNumber x = if x > 100 then x else x * 2
@@ -233,12 +235,24 @@ treeElem x (Node a left right)
 --     print' "hello whats your name?"
 --     print' $ "Hey " ++ name ++ ", you rock!"
 
+-- main = do
+--     c <- getChar
+--     if c /= ' '
+--         then do
+--             putChar c
+--             main
+--         else do
+--             print' $ ": end of the world " ++ [c]
+--             return ()
+
+-- main = do
+--     rs <- sequence [getLine, getLine, getLine]
+--     print' rs
+
+-- main = interact $ unlines . filter ((<10) . length) . lines
+
 main = do
-    c <- getChar
-    if c /= ' '
-        then do
-            putChar c
-            main
-        else do
-            print' $ ": end of the world " ++ [c]
-            return ()
+    handle <- openFile "lyrics.txt" ReadMode
+    contents <- hGetContents handle
+    putStrLn contents
+    hClose handle
