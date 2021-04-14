@@ -276,12 +276,18 @@ treeElem x (Node a left right)
 -- main = print $ addXY 20 $ addXY 10 10
 
 -- getNameTag :: IO String
-ret10 :: Int
-ret10 = 10
+-- ret10 :: Int
+-- ret10 = 10
+--
+-- getNameTag :: IO Int
+-- getNameTag = do
+--     test <- return ret10
+--     return test
+--
+-- main = putStrLn $ show getNameTag
 
-getNameTag :: IO Int
-getNameTag = do
-    test <- return ret10
-    return test
+addXY :: Int -> Int -> Int
+addXY x y = x + y
 
-main = putStrLn $ show getNameTag
+pairXY = (10, 40)
+main = print $ addXY (fst pairXY) (snd pairXY)
