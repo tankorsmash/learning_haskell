@@ -251,8 +251,13 @@ treeElem x (Node a left right)
 
 -- main = interact $ unlines . filter ((<10) . length) . lines
 
+-- main = do
+--     handle <- openFile "lyrics.txt" ReadMode
+--     contents <- hGetContents handle
+--     putStrLn contents
+--     hClose handle
+
 main = do
-    handle <- openFile "lyrics.txt" ReadMode
-    contents <- hGetContents handle
-    putStrLn contents
-    hClose handle
+    withFile "lyrics.txt" ReadMode (\handle -> do
+       contents <- hGetContents handle
+       putStrLn contents)
