@@ -5,6 +5,8 @@ import Data.String as T
 import qualified Data.Map as Map
 
 import System.IO
+import System.Directory
+import Data.List
 
 doubleMe x = x + x
 my_int = doubleMe 2
@@ -257,7 +259,29 @@ treeElem x (Node a left right)
 --     putStrLn contents
 --     hClose handle
 
-main = do
-    withFile "lyrics.txt" ReadMode (\handle -> do
-       contents <- hGetContents handle
-       putStrLn contents)
+-- main = do
+--     withFile "lyrics.txt" ReadMode (\handle -> do
+--        contents <- hGetContents handle
+--        putStrLn contents)
+
+-- main = do
+--     writeFile "new.txt" contents
+--         where contents = "SSSS"
+
+-- main = do
+--     handle <- openFile "todo.txt" ReadMode
+--     (tempName, tempHandle) <- openTempFile "." "temp"
+
+-- addXY x y = x + y
+-- main = print $ addXY 20 $ addXY 10 10
+
+-- getNameTag :: IO String
+ret10 :: Int
+ret10 = 10
+
+getNameTag :: IO Int
+getNameTag = do
+    test <- return ret10
+    return test
+
+main = putStrLn $ show getNameTag
