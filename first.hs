@@ -345,18 +345,47 @@ updateTodo = do
 
 
 dispatch :: [(String, [String] -> IO ())]
-dispatch = [ ("add", add),
-            ("view", view)]
-            -- ("remove", remove)]
+dispatch = [("add", add),
+            ("view", view),
+            ("remove", remove)]
 
 add :: [String] -> IO ()
 add [fileName, todoItem] = appendFile fileName (todoItem ++ "\n")
 
 view :: [String] -> IO ()
 view [fileName] = do
+    putStrLn $ "Contents of " ++ fileName ++ ":"
     contents <- readFile fileName
     let numberedContents = zipWith (\ n line -> show n ++ ") " ++ line) [0..]  (lines contents)
     putStr $ unlines numberedContents
+
+remove :: [String] -> IO ()
+remove [fileName, idx] = do
+    -- get file handle
+    handle <- openFile fileName ReadMode
+    -- create temp file
+    (tempName, tempHandle) <- openTempFile "." "temp.tmp"
+    -- read contents
+    contents <- hGetContents handle
+
+    -- process and remove line with index 'number'
+    let number = read idx
+        todoTasks = lines contents
+        newTasks = delete (todoTasks !! number) todoTasks
+
+    -- write to temp file
+    hPutStr tempHandle $ unlines newTasks
+    -- close both files
+    hClose handle
+    hClose tempHandle
+
+    -- remove orig and rename temp to orig name
+    removeFile fileName
+    renameFile tempName fileName
+
+    -- printout contents to screen
+    view [fileName]
+
 
 main = do
     (command:args) <- getArgs
