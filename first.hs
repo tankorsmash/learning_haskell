@@ -8,6 +8,8 @@ import System.IO
 import System.Directory
 import Data.List
 
+import System.Environment
+
 doubleMe x = x + x
 my_int = doubleMe 2
 doubleSmallNumber x = if x > 100 then x else x * 2
@@ -303,9 +305,10 @@ treeElem x (Node a left right)
 --     todoItem <- getLine
 --     appendFile "todo.txt" (todoItem ++ "\n")
 
+todoFilename = "todo.txt"
 
-main = do
-    handle <- openFile "todo.txt" ReadMode
+updateTodo = do
+    handle <- openFile todoFilename ReadMode
     (tempName, tempHandle) <- openTempFile "." "temp.tmp"
     contents <- hGetContents handle
 
@@ -328,5 +331,13 @@ main = do
     hPutStr tempHandle $ unlines newTodoItems
     hClose handle
     hClose tempHandle
-    removeFile "todo.txt"
-    renameFile tempName "todo.txt"
+    removeFile todoFilename
+    renameFile tempName todoFilename
+
+-- main = updateTodo
+
+main = do
+    progName <- getProgName
+    args <- getArgs
+    print progName
+    print args
