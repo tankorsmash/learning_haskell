@@ -336,8 +336,29 @@ updateTodo = do
 
 -- main = updateTodo
 
+-- main = do
+--     progName <- getProgName
+--     args <- getArgs
+--     print progName
+--     print args
+
+
+
+dispatch :: [(String, [String] -> IO ())]
+dispatch = [ ("add", add),
+            ("view", view)]
+            -- ("remove", remove)]
+
+add :: [String] -> IO ()
+add [fileName, todoItem] = appendFile fileName (todoItem ++ "\n")
+
+view :: [String] -> IO ()
+view [fileName] = do
+    contents <- readFile fileName
+    let numberedContents = zipWith (\ n line -> show n ++ ") " ++ line) [0..]  (lines contents)
+    putStr $ unlines numberedContents
+
 main = do
-    progName <- getProgName
-    args <- getArgs
-    print progName
-    print args
+    (command:args) <- getArgs
+    let (Just action) = lookup command dispatch
+    action args
