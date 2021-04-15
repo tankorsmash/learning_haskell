@@ -286,8 +286,17 @@ treeElem x (Node a left right)
 --
 -- main = putStrLn $ show getNameTag
 
-addXY :: Int -> Int -> Int
-addXY x y = x + y
+-- addXY :: Int -> Int -> Int
+-- addXY x y = x + y
 
-pairXY = (10, 40)
-main = print $ addXY (fst pairXY) (snd pairXY)
+-- pairXY = (10, 40)
+-- main = print $ addXY (fst pairXY) (snd pairXY)
+
+-- vals = (10, 20, 30, 40)
+-- main = print $ vals!!0
+
+main = do
+    putStr "Add something:\n> "
+    hFlush stdout
+    todoItem <- getLine
+    appendFile "todo.txt" (todoItem ++ "\n")
