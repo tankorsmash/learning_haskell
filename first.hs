@@ -290,13 +290,43 @@ treeElem x (Node a left right)
 -- addXY x y = x + y
 
 -- pairXY = (10, 40)
+-- (x, y) = pairXY
+-- main = print x
 -- main = print $ addXY (fst pairXY) (snd pairXY)
 
 -- vals = (10, 20, 30, 40)
 -- main = print $ vals!!0
 
+-- main = do
+--     putStr "Add something:\n> "
+--     hFlush stdout
+--     todoItem <- getLine
+--     appendFile "todo.txt" (todoItem ++ "\n")
+
+
 main = do
-    putStr "Add something:\n> "
-    hFlush stdout
-    todoItem <- getLine
-    appendFile "todo.txt" (todoItem ++ "\n")
+    handle <- openFile "todo.txt" ReadMode
+    (tempName, tempHandle) <- openTempFile "." "temp.tmp"
+    contents <- hGetContents handle
+
+    let todoTasks = lines contents
+        numberedTasks = zipWith (\n line -> show n ++ " - " ++ line) [0..] todoTasks
+
+    putStrLn "These are them"
+    putStr $ unlines numberedTasks
+
+    putStrLn "Which do you want to delete?"
+
+    numberString <- getLine
+    let number = read numberString
+        -- look up the line for idx, then delete the first line that matches that line (might have duplicates though)
+        newTodoItems = delete (todoTasks !! number) todoTasks
+
+    -- print out the deleted lines
+    putStrLn $ "Deleted " ++ show (todoTasks !! number)
+
+    hPutStr tempHandle $ unlines newTodoItems
+    hClose handle
+    hClose tempHandle
+    removeFile "todo.txt"
+    renameFile tempName "todo.txt"
