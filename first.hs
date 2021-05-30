@@ -354,7 +354,6 @@ add [fileName, todoItem] = appendFile fileName (todoItem ++ "\n")
 
 view :: [String] -> IO ()
 view [fileName] = do
-    putStrLn $ "Contents of " ++ fileName ++ ":"
     contents <- readFile fileName
     let numberedContents = zipWith (\ n line -> show n ++ ") " ++ line) [0..]  (lines contents)
     putStr $ unlines numberedContents
@@ -363,31 +362,45 @@ remove :: [String] -> IO ()
 remove [fileName, idx] = do
     -- get file handle
     handle <- openFile fileName ReadMode
-    -- create temp file
-    (tempName, tempHandle) <- openTempFile "." "temp.tmp"
-    -- read contents
-    contents <- hGetContents handle
+    -- read file contents
+    raw_contents <- hGetContents handle
+    -- process file contents
+    let contents = lines raw_contents
+        newContents = delete (contents !! read idx) contents
 
-    -- process and remove line with index 'number'
-    let number = read idx
-        todoTasks = lines contents
-        newTasks = delete (todoTasks !! number) todoTasks
+    -- close handle
+    -- hClose handle
 
-    -- write to temp file
-    hPutStr tempHandle $ unlines newTasks
-    -- close both files
-    hClose handle
-    hClose tempHandle
+    putStrLn "ASDSA"
+    --open a new handle in Write this time
+    handle2 <- openFile fileName WriteMode
+    putStrLn "BBB"
+    hPutStr handle2 $ unlines newContents
+    putStrLn "Done"
 
-    -- remove orig and rename temp to orig name
-    removeFile fileName
-    renameFile tempName fileName
 
-    -- printout contents to screen
-    view [fileName]
+-- main = do
+--     (command:args) <- getArgs
+--     let (Just action) = lookup command dispatch
+--     action args
 
+
+comma_join :: String -> String
+comma_join str = str ++ ","
+
+print_args :: [String] -> IO()
+print_args [arg1] = print $ arg1 ++ " just by itself"
+print_args [arg1, arg2] = print $ arg1 ++ " added to " ++ arg2
+print_args [] = print "No args"
+print_args args = print $ unwords $ (map comma_join $ init args) ++ [(last args)]
+-- print_args args = print $ (intercalate ", ") args
+
+dispatch2 :: [(String, [String]-> IO())]
+dispatch2 = [("pp", print_args)]
 
 main = do
-    (command:args) <- getArgs
-    let (Just action) = lookup command dispatch
-    action args
+    (command : args) <- getArgs
+    -- let qwe = lookup command dispatch2
+    case lookup command dispatch2 of
+      Nothing -> print ("no match")
+      Just qwe -> qwe args
